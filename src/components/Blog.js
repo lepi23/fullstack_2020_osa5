@@ -22,7 +22,7 @@ const Blog = ({ blog, likeBlog, removeBlog }) => {
     }
     if(showAllInfo)
         return(
-            <div className='blog'>
+            <li className='blog'>
                 <p>
                     {blog.title} {blog.author}
                     <button onClick={handleInfoDisplay}>{label}</button>
@@ -35,15 +35,15 @@ const Blog = ({ blog, likeBlog, removeBlog }) => {
                 <p>{blog.user.username}</p>
 
                 <button onClick={handleRemove}>remove</button>
-            </div>
+            </li>
 
         )
     else{
         return(
-            <div className='blog'>
+            <li className='blog'>
                 {blog.title} {blog.author}
                 <button onClick={handleInfoDisplay}>{label}</button>
-            </div>
+            </li>
         )
     }
 }
