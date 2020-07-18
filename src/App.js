@@ -81,7 +81,6 @@ const App = () => {
             .then(returnedBlog => {
                 setBlogs(blogs.concat(returnedBlog))
                 notifyWith(`a new blog ${returnedBlog.title} by ${returnedBlog.author}`,'success')
-
             })
     }
     const like = (id) => {
@@ -138,10 +137,10 @@ const App = () => {
             <Notification notification={notification} />
             <h2>blogs</h2>
             <RenderUserInfo user = {user} handleLogout = {handleLogout}/>
-            <Togglable buttonLabel ='new blog'>
+            <Togglable buttonLabel ='new blog' ref={blogFormRef}>
                 <BlogForm
                     createNewBlog={addBlog}
-                    ref={blogFormRef}
+                    //ref={blogFormRef}
                 />
             </Togglable>
             <BlogList

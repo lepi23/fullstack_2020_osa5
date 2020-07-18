@@ -23,18 +23,16 @@ const Blog = ({ blog, likeBlog, removeBlog }) => {
     if(showAllInfo)
         return(
             <li className='blog'>
-                <p>
-                    {blog.title} {blog.author}
-                    <button onClick={handleInfoDisplay}>{label}</button>
-                </p>
+                {blog.title} {blog.author}
+                <button onClick={handleInfoDisplay} id='display-button'>{label}</button>
                 <p>{blog.url}</p>
                 <p>
         likes {blog.likes}
-                    <button onClick={handleLike}>like</button>
+                    <button onClick={handleLike} id='like-button'>like</button>
                 </p>
                 <p>{blog.user.username}</p>
 
-                <button onClick={handleRemove}>remove</button>
+                <button onClick={handleRemove} id='remove-button'>remove</button>
             </li>
 
         )
@@ -42,7 +40,7 @@ const Blog = ({ blog, likeBlog, removeBlog }) => {
         return(
             <li className='blog'>
                 {blog.title} {blog.author}
-                <button onClick={handleInfoDisplay}>{label}</button>
+                <button onClick={handleInfoDisplay}id='display-button'>{label}</button>
             </li>
         )
     }
