@@ -32,7 +32,7 @@ Cypress.Commands.add('login', ({ username, password }) => {
         cy.visit('http://localhost:3000')
     })
 })
-Cypress.Commands.add('createNote', ({ author, url, title }) => {
+Cypress.Commands.add('createBlog', ({ author, url, title }) => {
     cy.request({
         url: 'http://localhost:3001/api/blogs',
         method: 'POST',

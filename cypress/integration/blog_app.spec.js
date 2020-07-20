@@ -1,7 +1,6 @@
 describe('Blog app', function() {
     beforeEach(function() {
         cy.request('POST', 'http://localhost:3001/api/testing/reset')
-        cy.request('POST', 'http://localhost:3001/api/testing/reset')
         const user = {
             name: 'Mikael Kosola',
             username: 'niilo22',
@@ -50,15 +49,15 @@ describe('Blog app', function() {
         })
 
     })
-    describe('and a blog exists', function () {
+    describe('Some blogs exists', function () {
         beforeEach(function () {
             cy.login({ username: 'niilo22', password: 'pengalintiikeri' })
-            cy.createNote({ title: 'Morjesta', author:'Onni Suoraan Maagista', url:'www...' })
-            cy.createNote({ title: 'En mun mielestä', author:'Onni Suoraan Maagista', url:'www...' })
-            cy.createNote({ title: 'this is the bad coffee', author:'Mikael', url:'www...' })
+            cy.createBlog({ title: 'Morjesta', author:'Onni Suoraan Maagista', url:'www...' })
+            cy.createBlog({ title: 'En mun mielestä', author:'Onni Suoraan Maagista', url:'www...' })
+            cy.createBlog({ title: 'this is the bad coffee', author:'Mikael', url:'www...' })
         })
 
-        it('it can be liked', function () {
+        it('A blog can be liked', function () {
 
             cy.contains('this is the bad coffee')
                 .contains('show')
@@ -80,5 +79,30 @@ describe('Blog app', function() {
                 .click()
 
         })
+        it.only('blogs in the list are sorted by likes', function() {
+            cy.contains('Morjesta')
+                .contains('show')
+                .click()
+
+            cy.contains('Morjesta')
+                .contains('like')
+                .click()
+                .click()
+
+            cy.contains('this is the bad coffee')
+                .contains('show')
+                .click()
+            cy.contains('this is the bad coffee')
+                .contains('like')
+                .click()
+
+            cy.get('.blog')
+                .then($elements => {
+                    var likes = $elements.map($el => $el.likes)
+                    console.log(likes)
+                    cy.wrap(likes).should('equal', likes.sort())
+                })
+        })
     })
+
 })

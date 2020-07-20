@@ -4,7 +4,7 @@ import Blog from './Blog'
 const BlogList = ( props ) => {
     props.blogs.sort((a, b) => (a.likes < b.likes) ? 1 : -1)
     return (
-        <div>
+        <div id='blogList'>
             {props.blogs.map(blog =>
                 <Blog
                     key={blog.id}
